@@ -4,8 +4,10 @@ import './App.css';
 
 import { useHotkeys } from 'react-hotkeys-hook';
 import ReactPlayer from 'react-player';
+import { Howl, Howler } from 'howler';
 
 const DEBUG = 0;
+const TESTAudio = '/src/assets/drums/Bld_H1.mp3';
 
 // Debug code for get keydown event and keycode.
 if (DEBUG === 1) {
@@ -25,11 +27,15 @@ const UseHotkeysTest = () => {
 
 const ReactPlayerTest = () => {
   // const testUrl = 'https://youtu.be/E9cQJ6QxZOw';
-  const testAudio = '/src/assets/drums/Bld_H1.mp3';
+
   return (
-    <ReactPlayer url={testAudio} controls width={'100%'} height={'auto'} />
+    <ReactPlayer url={TESTAudio} controls width={'100%'} height={'auto'} />
   );
 };
+
+const sound = new Howl({
+  src: [TESTAudio],
+});
 
 function App() {
   const [count, setCount] = useState(0);
@@ -42,18 +48,30 @@ function App() {
           <p>UseHotkeysTest</p>
           <UseHotkeysTest />
         </div>
-        <ReactPlayerTest />
+        <div>
+          <p>ReactPlayerTest</p>
+          <ReactPlayerTest />
+        </div>
+        <div>
+          <p>HowlerTest</p>
+          <button onClick={() => sound.play()}>HOWLER</button>
+        </div>
 
         <div id='display'>display</div>
-        <div className='drum-pad' id='audio1'>
+        <button
+          className='drum-pad'
+          id='audio1'
+          onClick={() => {
+            document.getElementById('Q').play();
+          }}
+        >
           Q
           <audio
-            controls
             src='/src/assets/drums/Bld_H1.mp3'
             className='clip'
             id='Q'
           ></audio>
-        </div>
+        </button>
         <div className='drum-pad' id='audio2'>
           W
           <audio
@@ -129,6 +147,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
