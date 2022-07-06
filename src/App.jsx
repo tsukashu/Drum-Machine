@@ -2,6 +2,26 @@ import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { useHotkeys } from 'react-hotkeys-hook';
+
+const DEBUG = 0;
+
+// Debug code for get keydown event and keycode.
+if (DEBUG === 1) {
+  document.addEventListener('keydown', function (event) {
+    console.log(`Key:${event.key} with keycode ${event.code} has been pressed`);
+  });
+}
+//end
+
+const UseHotkeysTest = () => {
+  const [count, setCount] = useState(0);
+
+  useHotkeys('a', () => setCount((count) => count + 1));
+
+  return <span>Pressed 'a' key {count} times.</span>;
+};
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -9,6 +29,11 @@ function App() {
     <div className='App App-header'>
       <div className='App-container' id='drum-machine'>
         <h2>Drum Machine 🥁</h2>
+        <div>
+          test
+          <UseHotkeysTest />
+        </div>
+
         <div id='display'>display</div>
         <div className='drum-pad' id='audio1'>
           Q
