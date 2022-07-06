@@ -4,31 +4,61 @@ import './App.css';
 
 import { useHotkeys } from 'react-hotkeys-hook';
 import ReactPlayer from 'react-player';
+import { Howl, Howler } from 'howler';
 
-const DEBUG = 0;
 
-// Debug code for get keydown event and keycode.
-if (DEBUG === 1) {
-  document.addEventListener('keydown', function (event) {
-    console.log(`Key:${event.key} with keycode ${event.code} has been pressed`);
-  });
-}
-//end
+const TESTAudio = '/src/assets/drums/Bld_H1.mp3';
 
-const UseHotkeysTest = () => {
-  const [count, setCount] = useState(0);
 
-  useHotkeys('a', () => setCount((count) => count + 1));
-
-  return <span>Pressed 'a' key {count} times.</span>;
+const DramPad = (props) => {
+  return (
+    <button
+      className='drum-pad'
+      id='audio0'
+      onClick={() => howlerTest(props.audio)}
+    >
+      {props.id}
+      <audio src={props.audio} className='clip' id={props.id}></audio>
+    </button>
+  );
+};
+const DramPadDOM = () => {
+  // this is implement version using Direct DOM manipulation.
+  return (
+    <button
+      className='drum-pad'
+      id='audio0'
+      onClick={() => {
+        document.getElementById('F').play();
+      }}
+    >
+      F
+      <audio src='/src/assets/drums/Bld_H1.mp3' className='clip' id='F'></audio>
+    </button>
+  );
 };
 
-const ReactPlayerTest = () => {
-  // const testUrl = 'https://youtu.be/E9cQJ6QxZOw';
-  const testAudio = '/src/assets/drums/Bld_H1.mp3';
-  return (
-    <ReactPlayer url={testAudio} controls width={'100%'} height={'auto'} />
-  );
+const howlerSoundOnly = () => {
+  const sound = new Howl({
+    src: [TESTAudio],
+  });
+
+  sound.play();
+};
+
+const howlerTest = (audio) => {
+  const sound = new Howl({
+    src: [audio],
+  });
+
+  sound.play();
+};
+
+const ReactHotkeyTest = () => {
+  const audio = TESTAudio;
+  useHotkeys('a', () => {
+    howlerTest(audio);
+  });
 };
 
 function App() {
@@ -39,96 +69,22 @@ function App() {
       <div className='App-container' id='drum-machine'>
         <h2>Drum Machine 🥁</h2>
         <div>
-          <p>UseHotkeysTest</p>
-          <UseHotkeysTest />
+          <ReactHotkeyTest />
         </div>
-        <ReactPlayerTest />
-
         <div id='display'>display</div>
-        <div className='drum-pad' id='audio1'>
-          Q
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='Q'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio2'>
-          W
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='W'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio3'>
-          E
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='E'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio4'>
-          A
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='A'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio5'>
-          S
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='S'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio6'>
-          D
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='D'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio7'>
-          Z
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='Z'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio8'>
-          X
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='X'
-          ></audio>
-        </div>
-        <div className='drum-pad' id='audio9'>
-          C
-          <audio
-            controls
-            src='/src/assets/drums/Bld_H1.mp3'
-            className='clip'
-            id='C'
-          ></audio>
-        </div>
+
+        <DramPad id={'Q'} audio={TESTAudio} />
+        <DramPad id={'W'} audio={TESTAudio} />
+        <DramPad id={'E'} audio={TESTAudio} />
+        <DramPad id={'A'} audio={TESTAudio} />
+        <DramPad id={'S'} audio={TESTAudio} />
+        <DramPad id={'D'} audio={TESTAudio} />
+        <DramPad id={'Z'} audio={TESTAudio} />
+        <DramPad id={'X'} audio={TESTAudio} />
+        <DramPad id={'C'} audio={TESTAudio} />
       </div>
     </div>
   );
-}
+};
 
 export default App;
