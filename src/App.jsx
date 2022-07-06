@@ -6,36 +6,23 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import ReactPlayer from 'react-player';
 import { Howl, Howler } from 'howler';
 
-const DEBUG = 0;
+
 const TESTAudio = '/src/assets/drums/Bld_H1.mp3';
 
-// Debug code for get keydown event and keycode.
-if (DEBUG === 1) {
-  document.addEventListener('keydown', function (event) {
-    console.log(`Key:${event.key} with keycode ${event.code} has been pressed`);
+const howlerTest = (audio) => {
+  const sound = new Howl({
+    src: [audio],
   });
-}
-//end
 
-const UseHotkeysTest = () => {
-  const [count, setCount] = useState(0);
-
-  useHotkeys('a', () => setCount((count) => count + 1));
-
-  return <span>Pressed 'a' key {count} times.</span>;
+  sound.play();
 };
 
-const ReactPlayerTest = () => {
-  // const testUrl = 'https://youtu.be/E9cQJ6QxZOw';
-
-  return (
-    <ReactPlayer url={TESTAudio} controls width={'100%'} height={'auto'} />
-  );
+const ReactHotkeyTest = () => {
+  const audio = TESTAudio;
+  useHotkeys('a', () => {
+    howlerTest(audio);
+  });
 };
-
-const sound = new Howl({
-  src: [TESTAudio],
-});
 
 function App() {
   const [count, setCount] = useState(0);
@@ -45,18 +32,10 @@ function App() {
       <div className='App-container' id='drum-machine'>
         <h2>Drum Machine 🥁</h2>
         <div>
-          <p>UseHotkeysTest</p>
-          <UseHotkeysTest />
-        </div>
-        <div>
-          <p>ReactPlayerTest</p>
-          <ReactPlayerTest />
-        </div>
-        <div>
           <p>HowlerTest</p>
-          <button onClick={() => sound.play()}>HOWLER</button>
+          <button onClick={howlerTest}>HOWLER</button>
+          <ReactHotkeyTest />
         </div>
-
         <div id='display'>display</div>
         <button
           className='drum-pad'
