@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { useHotkeys } from 'react-hotkeys-hook';
+import ReactPlayer from 'react-player';
 
 const DEBUG = 0;
 
@@ -22,6 +23,18 @@ const UseHotkeysTest = () => {
   return <span>Pressed 'a' key {count} times.</span>;
 };
 
+const ReactPlayerTest = () => {
+  const testUrl = 'https://youtu.be/E9cQJ6QxZOw';
+  const testAudio = '/src/assets/drums/Bld_H1.mp3';
+
+  return (
+    <div>
+      <ReactPlayer url={testUrl} controls />
+      <ReactPlayer url={testAudio} controls />
+    </div>
+  );
+};
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -30,8 +43,12 @@ function App() {
       <div className='App-container' id='drum-machine'>
         <h2>Drum Machine 🥁</h2>
         <div>
-          test
+          <p>UseHotkeysTest</p>
           <UseHotkeysTest />
+        </div>
+        <div>
+          <p>ReactPlayerTest</p>
+          <ReactPlayerTest />
         </div>
 
         <div id='display'>display</div>
