@@ -24,14 +24,10 @@ const UseHotkeysTest = () => {
 };
 
 const ReactPlayerTest = () => {
-  const testUrl = 'https://youtu.be/E9cQJ6QxZOw';
+  // const testUrl = 'https://youtu.be/E9cQJ6QxZOw';
   const testAudio = '/src/assets/drums/Bld_H1.mp3';
-
   return (
-    <div>
-      <ReactPlayer url={testUrl} controls />
-      <ReactPlayer url={testAudio} controls />
-    </div>
+    <ReactPlayer url={testAudio} controls width={'100%'} height={'auto'} />
   );
 };
 
@@ -46,10 +42,7 @@ function App() {
           <p>UseHotkeysTest</p>
           <UseHotkeysTest />
         </div>
-        <div>
-          <p>ReactPlayerTest</p>
-          <ReactPlayerTest />
-        </div>
+        <ReactPlayerTest />
 
         <div id='display'>display</div>
         <div className='drum-pad' id='audio1'>
