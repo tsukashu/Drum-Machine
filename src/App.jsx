@@ -8,6 +8,9 @@ import { Howl, Howler } from 'howler';
 
 const TESTAudio = '/src/assets/drums/Bld_H1.mp3';
 
+
+
+
 const DramPad = (props) => {
   return (
     <button
@@ -41,23 +44,11 @@ const DramPadWithHowler = (props) => {
   );
 };
 
-const ReactHotkeyTest = () => {
-  const audio = TESTAudio;
-  useHotkeys('a', () => {
-    howlerTest(audio);
-  });
-};
-
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className='App App-header'>
       <div className='App-container' id='drum-machine'>
         <h2>Drum Machine 🥁</h2>
-        <div>
-          <ReactHotkeyTest />
-        </div>
         <div id='display'>display</div>
 
         <DramPad id={'Q'} audio={TESTAudio} />
