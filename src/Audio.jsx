@@ -18,8 +18,6 @@ import audio16 from './audio/drums/punchy_kick_1.mp3';
 import audio17 from './audio/drums/RP4_KICK_1.mp3';
 import audio18 from './audio/drums/side_stick_1.mp3';
 
-
-
 export {
   audio0,
   audio1,

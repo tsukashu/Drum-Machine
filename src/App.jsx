@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { useHotkeys } from 'react-hotkeys-hook';
-import { Howl, Howler } from 'howler';
 
 import * as Audio from './Audio';
 
@@ -94,29 +92,5 @@ function App() {
     </div>
   );
 }
-
-
-
-
-
-const DramPadWithHowler = (props) => {
-  const howlerTest = (audio) => {
-    const sound = new Howl({
-      src: [audio],
-    });
-
-    sound.play();
-  };
-  return (
-    <button
-      className='drum-pad'
-      id='audio0'
-      onClick={() => howlerTest(props.audio)}
-    >
-      {props.id}
-      <audio src={props.audio} className='clip' id={props.id}></audio>
-    </button>
-  );
-};
 
 export default App;
