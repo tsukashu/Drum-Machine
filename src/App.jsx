@@ -5,7 +5,6 @@ import './App.css';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { Howl, Howler } from 'howler';
 
-import TESTAudio from './audio/drums/Bld_H1.mp3';
 
 // audio import
 import audio0 from './audio/drums/Bld_H1.mp3';
@@ -29,7 +28,16 @@ import audio17 from './audio/drums/RP4_KICK_1.mp3';
 import audio18 from './audio/drums/side_stick_1.mp3';
 // audio import end
 
+const ReactHotkeyTest = () => {
+  useHotkeys('space', () => console.log('this is test log'));
+  useHotkeys('space', () => document.getElementById(0).play());
+
+  return <audio controls src={audio0} className='clip' id={0}></audio>;
+};
+
 const DramPad = (props) => {
+  useHotkeys(props.id, () => console.log(`${props.id} is pressed`));
+  useHotkeys(props.id, () => document.getElementById(props.id).play());
   return (
     <button
       className='drum-pad'
@@ -45,11 +53,13 @@ const DramPad = (props) => {
 function App() {
   return (
     <div className='App App-header'>
+      <p>press SPACE key to test react hotkeys</p>
+      {/* <ReactHotkeyTest /> */}
       <div className='App-container' id='drum-machine'>
         <h2>Drum Machine 🥁</h2>
         <div id='display'>display</div>
 
-        <DramPad id={'space'} audio={audio18} />
+        {/* <DramPad id={'space'} audio={audio18} /> */}
         <DramPad id={'Q'} audio={audio1} />
         <DramPad id={'W'} audio={audio2} />
         <DramPad id={'E'} audio={audio3} />
