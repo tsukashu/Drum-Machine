@@ -12,7 +12,6 @@ const ReactHotkeyTest = (props) => {
   return <audio controls src={props.audio} className='clip' id={0}></audio>;
 };
 
-renameFunc();
 
 const DramPad = (props) => {
   useHotkeys(props.id, () => console.log(`${props.id} is pressed`));
