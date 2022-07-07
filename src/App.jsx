@@ -3,20 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 
 import { useHotkeys } from 'react-hotkeys-hook';
-import ReactPlayer from 'react-player';
 import { Howl, Howler } from 'howler';
 
 const TESTAudio = '/src/assets/drums/Bld_H1.mp3';
-
-
-
 
 const DramPad = (props) => {
   return (
     <button
       className='drum-pad'
       id='audio0'
-      // onClick={() => howlerTest(props.audio)}
       onClick={() => document.getElementById(props.id).play()}
     >
       {props.id}
