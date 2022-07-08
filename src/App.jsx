@@ -6,6 +6,8 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import audioData from './Audio';
 console.log(audioData);
 
+
+
 const DramPad = (props) => {
   useHotkeys(props.id, () => console.log(`${props.id} is pressed`));
   useHotkeys(props.id, () => document.getElementById(props.id).play());
@@ -33,6 +35,7 @@ const DramPad = (props) => {
 
 function App() {
   const [displayText, setDisplayText] = useState('');
+
   return (
     <div className='App App-header'>
       <div className='App-container' id='drum-machine'>
