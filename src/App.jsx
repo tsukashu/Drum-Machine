@@ -9,11 +9,11 @@ console.log(audioData);
 
 
 const DramPad = (props) => {
-  useHotkeys(props.id, () => console.log(`${props.id} is pressed`));
-  useHotkeys(props.id, () => document.getElementById(props.id).play());
-  useHotkeys(props.id, () =>
-    props.setDisplayText(audioData[props.audioNo].title)
-  );
+  // useHotkeys(props.id, () => console.log(`${props.id} is pressed`));
+  // useHotkeys(props.id, () => document.getElementById(props.id).play());
+  // useHotkeys(props.id, () =>
+  //   props.setDisplayText(audioData[props.audioNo].title)
+  // );
   return (
     <button
       className='drum-pad'
@@ -34,6 +34,12 @@ const DramPad = (props) => {
 };
 
 function App() {
+  useHotkeys('*', (e) => console.log(e.key.toUpperCase()));
+  useHotkeys('*', (e) =>
+    console.log(document.getElementById(e.key.toUpperCase()))
+  );
+  useHotkeys('*', (e) => document.getElementById(e.key.toUpperCase()).play());
+
   const [displayText, setDisplayText] = useState('');
 
   return (
